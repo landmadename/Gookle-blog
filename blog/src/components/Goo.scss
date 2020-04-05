@@ -1,0 +1,57 @@
+$count: 6;
+$ratio: 0.5;
+$decay: 0.9;
+$heighLightRatio: 0.4;
+
+@function pow($base, $exponent){
+  $product: $base;
+  @for $i from 1 to $exponent {
+    $product: $product * $base;
+  }
+  @return $product;
+}
+
+@function size-of($n) {
+  @return 100px * $ratio * pow($decay, $n);
+}
+
+.hooks-main > div {
+  position: absolute;
+  will-change: transform;
+  border-radius: 50%;
+  background: lightcoral;
+  box-shadow: 10px 10px 20px -15px rgba(0, 0, 0, 0.75);
+  opacity: 0.6;
+}
+
+@for $i from 1 through $count {
+  .hooks-main > div:nth-child(#{$i}) {
+    width: size-of($i);
+    height: size-of($i);
+    z-index: 30 - $i;
+    }
+}
+
+.hooks-main > div::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+
+@for $i from 1 through $count {
+  .hooks-main > div:nth-child(#{$i})::after {
+    top: size-of($i) * 0.1;
+    left: size-of($i) * 0.1;
+    width: size-of($i) * 0.6;
+    height: size-of($i) * 0.6;
+    z-index: 30 - $i;
+    }
+}
+
+
+
+.hooks-main {
+  filter: url('#goo');
+}

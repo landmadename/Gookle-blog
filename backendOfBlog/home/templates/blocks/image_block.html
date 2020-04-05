@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+{% image self.image original as img %}
+
+<figure>
+    <div class="image_content">
+        <img src="{{ img.url }}"/>
+    </div>
+    {% if self.caption %}
+        <figcaption>{{ self.caption }} - {{ self.attribution }}</figcaption>
+    {% endif %}
+</figure>
