@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { useSpring, animated} from 'react-spring'
+import { loadGooklePage } from './loadData'
+import "./misty-light-windows.css"
+import "./gookle_page.css"
 
 const PopaStyle = styled.div`
     position: absolute;
     border-radius: 10px;
     padding: 10px;
-    width: ${props => props.wwidth - props.wheight * 0.1 - 20}px;
-    height: ${props => props.wheight - props.wheight * 0.1 - 20}px;
+    width: ${props => props.wwidth - props.wheight * 0.05 - 20}px;
+    height: ${props => props.wheight - props.wheight * 0.05 - 20}px;
     z-index: 100;
     transform: translate3d(
-        ${props => props.wheight * 0.05}px,
-        ${props => props.wheight * 0.05}px,
+        ${props => props.wheight * 0.025}px,
+        ${props => props.wheight * 0.025}px,
         0
     );
     background-color: white;
@@ -20,11 +23,10 @@ const PopaStyle = styled.div`
     0 10px 10px -10px rgba(50, 50, 73, 0.3);
 `;
 
-
 function Popa(props) {
     const {wheight, wwidth, pageUrl} = props;
     const [trans, setTrans] = useSpring(()=>({y:wheight*(-1.3)}))
-    const [pageUrlToShow, setPageUrlToShow] = useState("")
+    const [content, setContent] = useState("")
     
     const transy = (y)=>`translate3d(0,${y}px,0)`
 
@@ -37,15 +39,16 @@ function Popa(props) {
     }
 
     useEffect(() => {
+        
         window.addEventListener("popstate", disappearOnPopstate, false)
         if (pageUrl === '') {
             setTrans(()=>({y:wheight*(-1.3)}))
-            setPageUrlToShow('')
-        } else {
-            setPageUrlToShow(pageUrl)
             setTimeout(() => {
-                setTrans(()=>({y:0}))
-            }, 400)     
+                setContent('')
+            }, 500)   
+        } else {
+            loadGooklePage(pageUrl,setContent)
+            setTrans(()=>({y:0}))
         }
         return () => {
             window.removeEventListener("popstate", disappearOnPopstate, false)
@@ -59,7 +62,8 @@ function Popa(props) {
                 position: "absolute",
                 zIndex: 100,
                 width: wwidth,
-                height: wheight
+                height: wheight,
+                borderRadius: "10px"
             }}
             onClick={()=>{
                 props.setPageUrl('')
@@ -67,9 +71,22 @@ function Popa(props) {
         >
             <PopaStyle
                 wwidth={wwidth}
-                wheight={wheight}               
+                wheight={wheight}     
+                style={{
+                    
+                }}          
             >
-                <iframe 
+                <div id="content" 
+                    dangerouslySetInnerHTML={{__html: content}}
+                    style={{
+                        overflow: "scroll",
+                        width: "100%",
+                        height: "100%",
+                    }}
+                >
+                
+                </div>
+                {/* <iframe 
                     style={{
                         height:"100%", 
                         width:"100%", 
@@ -79,7 +96,7 @@ function Popa(props) {
                     src={pageUrlToShow}
                 >
 
-                </iframe>
+                </iframe> */}
             </PopaStyle>
         </animated.div>
     )

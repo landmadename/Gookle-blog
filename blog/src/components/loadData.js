@@ -114,3 +114,21 @@ export function loadGookles(boxName, pushGookles, boxes, album, offset, times) {
       break;
   }
 }
+
+export function loadGooklePage(url, setContent) {
+  let data = ""
+  console.log(url)
+  fetch(url)
+  .then(res => res.text())
+  .then(
+    (result) => {
+      data = result
+      data = data.replace(/src="\//g, 'src="http://backendofblog.fastbreakfast.top/')
+      data = data.replace(/<link .*?>/g, '')
+      setContent(data)
+    },
+    (error) => {
+        console.log(error)
+    }
+  )
+}

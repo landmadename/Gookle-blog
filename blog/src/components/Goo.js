@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { useTrail, animated, config } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import { connect } from 'react-redux'
@@ -14,10 +14,13 @@ function Goo(props) {
         let tap = e.tap
         let span = 10
         const scale = down ? 0.6 : 1;
-        console.log("start")
+        console.log(tap,down)
         if (tap) { 
+            if (Date.now() - latestTapTime.current > 200) {
                 set({ xAs: [mx, 1] }) 
                 props.shiftLevel((props.level+1)%2)
+            }
+            latestTapTime.current = Date.now()
         } else {
             // console.log(mx)
             set({ 
@@ -32,13 +35,18 @@ function Goo(props) {
 
     const bind = useDrag(
         handelDrag,
-        { axis: 'x', initial: ()=>[parseInt(trail[0].xAs.getValue()[0]),580]}
+        { 
+            axis: 'x', 
+            initial: ()=>[parseInt(trail[0].xAs.getValue()[0]),580],
+            filterTaps: false
+        }
     )
 
     let wheight = window.innerHeight
     let wwidth = window.innerWidth
     const fast = { tension: 1200, friction: 40 }
     const slow = { mass: 1, tension: 1200-400, friction: 50 }
+    const latestTapTime = useRef(Date.now())
     const trans = (x,s) => `translate3d(${x}px,${wheight*0.9}px,0) translate3d(-50%,-50%,0) scale(${s})`
 
     const [trail, set] = useTrail(6, () => ({ xAs: [wwidth*0.5, 1] , config: i => (i === 0 ? fast : slow)}))
@@ -68,7 +76,7 @@ function Goo(props) {
                 {trail.map((props, index) => {
                     if (!index) {
                         return(
-                            <animated.div {...bind()} key={index} style={{ 
+                            <animated.div {...bind(index)} key={index} style={{ 
                                 transform: props.xAs.interpolate(trans) }} />  
                         )
                     } else {

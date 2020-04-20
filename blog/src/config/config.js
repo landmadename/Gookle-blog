@@ -1,6 +1,6 @@
 const config = {
-    site: 'http://fastbreakfast.top',
-    default_image: 'http://fastbreakfast.top/media/original_images/lalala.jpg',
+    site: 'http://backendofblog.fastbreakfast.top',
+    default_image: 'http://backendofblog.fastbreakfast.top/media/original_images/lalala.jpg',
     root_box_id: 4
 }
 

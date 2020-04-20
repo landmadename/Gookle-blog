@@ -42,7 +42,8 @@ function Deck(props) {
 
 
     function updateGookles() {
-        if (Object.keys(stick).length-1 - (-xIndex) < 4 && active) {
+        if (Object.keys(stick).length-1 - (-xIndex) < 2 && active) {
+            console.log(stick)
             console.log('Load Gookles')
             loadGookles(collectionName, props.pushGookles, props.boxes, props.album, Object.keys(stick).length-1)
         }
@@ -58,11 +59,8 @@ function Deck(props) {
           velocity
         }) => {
             if (tap) {
-                window.history.pushState({lalala: "lalala"}, "lalala", "?lalala=lalala");
-                setTimeout(() => {
-                    props.setPageUrl(stick[index].url)
-                }, 200)     
-                
+                console.log("hi")
+                props.setPageUrl(stick[index].url)
             }
             console.log("start")
             const horizontalDir = xDir < 0 ? -1 : 1;
