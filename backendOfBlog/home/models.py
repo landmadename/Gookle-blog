@@ -5,9 +5,7 @@ from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel, MultiField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.fields import StreamField
 from base.blocks import BaseStreamBlock
-
 from wagtail.api import APIField
-
 
 class BoxPage(Page):
     """

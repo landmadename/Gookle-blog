@@ -1,7 +1,8 @@
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.core.blocks import (
-    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock,
+    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock, StructBlock, TextBlock, RawHTMLBlock
 )
 
 
@@ -48,19 +49,33 @@ class BlockQuote(StructBlock):
         template = "blocks/blockquote.html"
 
 
+class AudioBlock(StructBlock):
+    """
+    Custom `AudioBlock` that allows the user to attribute a quote to the author
+    """
+    text = TextBlock(label='Audio name')
+
+    class Meta:
+        icon = "fa-arrow-right"
+        template = "blocks/audio_block.html"
+
+
 # StreamBlocks
 class BaseStreamBlock(StreamBlock):
     """
     Define the custom blocks that `StreamField` will utilize
     """
     heading_block = HeadingBlock()
+    markdown = MarkdownBlock(icon="code")
     paragraph_block = RichTextBlock(
         icon="fa-paragraph",
         template="blocks/paragraph_block.html"
     )
     image_block = ImageBlock()
+    raw_HTML = RawHTMLBlock()
     block_quote = BlockQuote()
+    audio_block = AudioBlock()
     embed_block = EmbedBlock(
         help_text='Insert an embed URL e.g https://www.youtube.com/embed/SGJFWirQ3ks',
-        icon="fa-s15",
+        icon="fa-paragraph",
         template="blocks/embed_block.html")

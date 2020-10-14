@@ -1,14 +1,10 @@
-body {
+/* body {
     margin: 0px;
 }
-
+ */
 .block-heading_block {
     text-align: center;
 }
-
-/* .stay_center {
-    text-align: center;
-} */
 
 .container {
     margin: 2vh auto;
@@ -24,24 +20,14 @@ body {
     align-items: center;    
 }
 
-.image_content img {
-    width:auto;
-    height:auto;
-    max-width:100%;
-    max-height:50vh;
-}
-
-.rich-text {
-    text-align: center;
-}
-
-.rich-text p {
-    text-align: left;
-}
-
+.image_content img,
 .rich-text img {
     width:auto;
     height:auto;
     max-width:100%;
-    max-height:50vh;
+    max-height:65vh;
+}
+
+audio {
+    margin: 3vh;
 }

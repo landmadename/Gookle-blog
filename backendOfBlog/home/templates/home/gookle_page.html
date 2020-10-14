@@ -1,14 +1,14 @@
 {% load static %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
+<link rel="icon" href="{% static "home/favicon.ico" %}">
+<link rel="stylesheet" type="text/css" href="{% static "home/css/misty-light-windows.css" %}">
 <link rel="stylesheet" type="text/css" href="{% static "home/css/gookle_page.css" %}">
 
 
 {% block content %}
-<div class="stay_center">
-    <div class="container">
-        {{page.something}}
-    </div>
+<div class="container">
+    {{page.something}}
 </div>
 {% endblock content %}
 
