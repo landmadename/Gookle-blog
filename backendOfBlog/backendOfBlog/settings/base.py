@@ -162,7 +162,9 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS = (
+    os.path.join('/home/lmn/dev/blog/blog/build/static'),
+)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -173,7 +175,7 @@ WAGTAIL_SITE_NAME = "backendOfBlog"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://fastbreakfast.top'
+BASE_URL = 'http://lamony.cn'
 
 
 CORS_ALLOW_CREDENTIALS = True

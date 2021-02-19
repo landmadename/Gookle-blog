@@ -123,7 +123,7 @@ export function loadGooklePage(url, setContent) {
   .then(
     (result) => {
       data = result
-      data = data.replace(/src="\//g, 'src="http://backendofblog.fastbreakfast.top/')
+      data = data.replace(/src="\//g, 'src="http://blog.lamony.cn/')
       data = data.replace(/<link .*?>/g, '')
       setContent(data)
     },
