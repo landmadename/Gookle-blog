@@ -99,14 +99,14 @@ export function loadGookles(boxName, pushGookles, boxes, album, offset, times) {
   switch (offset) {
     case 0:
       if (boxId === -1) {
-        path = config.site + '/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&offset=' + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_the_top_of_latest=true'
+        path = config.site + '/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&offset=' + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_latest=true'
       } else {
         path = config.site + "/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&child_of=" + boxId + "&offset=" + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_the_top_of_deck=true'
       }
       loadData(path)
     default:
       if (boxId === -1) {
-        path = config.site + '/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&offset=' + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_the_top_of_latest=false'
+        path = config.site + '/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&offset=' + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_latest=true'
       } else {
         path = config.site + "/api/v2/pages/?type=home.GooklePage&limit=200&fields=image,show_in_latest,show_in_the_top_of_deck,show_in_the_top_of_latest&child_of=" + boxId + "&offset=" + offset + '&order=' + (boxes[boxName].order_by_latest ? '-first_published_at' : 'first_published_at') + '&show_in_the_top_of_deck=false'
       }

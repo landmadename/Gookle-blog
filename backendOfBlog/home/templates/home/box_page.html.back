@@ -1,8 +1,0 @@
-{% load static %}
-{% load wagtailcore_tags wagtailimages_tags %}
-
-<link rel="stylesheet" type="text/css" href="{% static "home/css/box_page.css" %}">
-
-{% image page.image original as img %}
-
-<img src="{{ img.url }}" width="100%"/>

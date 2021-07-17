@@ -14,15 +14,14 @@ function Goo(props) {
         let tap = e.tap
         let span = 10
         const scale = down ? 0.6 : 1;
-        console.log(tap,down)
         if (tap) { 
             if (Date.now() - latestTapTime.current > 200) {
                 set({ xAs: [mx, 1] }) 
                 props.shiftLevel((props.level+1)%2)
             }
             latestTapTime.current = Date.now()
-        } else {
-            // console.log(mx)
+        } 
+        if (true) {
             set({ 
                 xAs: [down ? mx : wwidth*0.5, scale]
             })
@@ -36,7 +35,7 @@ function Goo(props) {
     const bind = useDrag(
         handelDrag,
         { 
-            axis: 'x', 
+            // axis: 'x', 
             initial: ()=>[parseInt(trail[0].xAs.getValue()[0]),580],
             filterTaps: false
         }
@@ -72,7 +71,7 @@ function Goo(props) {
                     <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 25 -5" />
                 </filter>
             </svg>
-            <div className="hooks-main" >
+            <div className="hooks-main">
                 {trail.map((props, index) => {
                     if (!index) {
                         return(

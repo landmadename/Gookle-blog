@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build; cp -r build/* ../backendOfBlog/home/templates/home/; mv ../backendOfBlog/home/templates/home/index.html ../backendOfBlog/home/templates/home/box_page.html;",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
